@@ -25,9 +25,9 @@ export default defineComponent({
       <ul class="weather-list unstyled-list">
         <li
           v-for="location in locations"
+          class="weather-card"
           :key="location.current.weather.id"
           :class="{
-            'weather-card': true,
             'weather-card--night':
               timeToMilliseconds(location.current.dt) > timeToMilliseconds(location.current.sunset) ||
               timeToMilliseconds(location.current.dt) < timeToMilliseconds(location.current.sunrise)
