@@ -22,7 +22,7 @@ const App = defineComponent({
   },
 
   template: `
-    <div class="container">Сегодня <time :datetime="dateFormatted"> {{dateLocal}} </time></div>
+    <div class="container">Сегодня <time :datetime="dateFormatted"> {{ dateLocal }} </time></div>
   `,
 })
 
