@@ -14,7 +14,7 @@
 
 .stretch-container > img,
 .stretch-container > video,
-.stretch-container > picture {
+:deep(.stretch-container > picture) {
   object-fit: scale-down;
 }
 </style>
