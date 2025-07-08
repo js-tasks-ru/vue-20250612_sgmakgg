@@ -27,16 +27,16 @@ export default defineComponent({
   },
 
   template: `
-    <div>
-      <p style="margin: 1em 0">
-        <UiCounter v-model:count="count1" />
-      </p>
-      <p style="margin: 1em 0">
-        <UiCounter v-model:count="count2" :min="1" :max="3" />
-      </p>
-      <p style="margin: 1em 0">
-        <UiButton kind="primary" @click="reset">Reset</UiButton>
-      </p>
-    </div>
-  `,
+      <div>
+        <p style="margin: 1em 0">
+          <UiCounter v-model:count="count1" @update:count="count1 = $event"/>
+        </p>
+        <p style="margin: 1em 0">
+          <UiCounter v-model:count="count2" :min="1" :max="3" @update:count="count2 = $event"/>
+        </p>
+        <p style="margin: 1em 0">
+          <UiButton kind="primary" @click="reset">Reset</UiButton>
+        </p>
+      </div>
+    `,
 })

@@ -1,17 +1,15 @@
-<script>
-import { defineComponent } from 'vue'
-import { UiAlert, UiContainer } from '@shgk/vue-course-ui'
-import MeetupAgenda from './MeetupAgenda.vue'
-import MeetupDescription from './MeetupDescription.vue'
+<script setup>
+import {UiAlert, UiContainer} from '@shgk/vue-course-ui'
+import meetups from './meetups.fixture.ts'
 import MeetupCover from './MeetupCover.vue'
+import MeetupDescription from './MeetupDescription.vue'
+import MeetupAgenda from './MeetupAgenda.vue'
 import MeetupInfo from './MeetupInfo.vue'
 
-export default defineComponent({
-  name: 'MeetupView',
-
-  components: {
-    UiAlert,
-    UiContainer,
+const props = defineProps({
+  meetup: {
+    type: Object,
+    default: () => meetups[0],
   },
 })
 </script>
@@ -19,6 +17,7 @@ export default defineComponent({
 <template>
   <div>
     <!-- Обложка митапа -->
+    <MeetupCover :image="meetup.image" :title="meetup.title" />
 
     <UiContainer>
       <div class="meetup">
@@ -26,16 +25,18 @@ export default defineComponent({
           <h2>Описание</h2>
 
           <!-- Описание митапа -->
+          <MeetupDescription :description="meetup.description" />
 
           <h2>Программа</h2>
 
           <!-- Программа митапа -->
+          <MeetupAgenda v-if="meetup.agenda && meetup.agenda.length" :agenda="meetup.agenda" />
           <!-- Или при пустой программе - сообщение "Программа пока пуста..." в UiAlert -->
-          <UiAlert></UiAlert>
+          <UiAlert v-if="!meetup.agenda || !meetup.agenda.length"> Программа пока пуста...</UiAlert>
         </div>
         <div class="meetup__aside">
           <!-- Краткая информация о митапе -->
-
+          <MeetupInfo :date="meetup.date" :organizer="meetup.organizer" :place="meetup.place"></MeetupInfo>
           <div class="meetup__aside-buttons"></div>
         </div>
       </div>
