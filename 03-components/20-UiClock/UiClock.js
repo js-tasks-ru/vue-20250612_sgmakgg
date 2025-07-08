@@ -5,7 +5,7 @@ export default defineComponent({
 
   setup() {
     const getTime = () =>
-      new Date().toLocaleTimeString('en-US', {
+      new Date().toLocaleTimeString(navigator.language, {
         timeStyle: 'medium',
       })
 

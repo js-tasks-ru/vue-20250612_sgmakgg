@@ -5,7 +5,6 @@ import MeetupDescription from './MeetupDescription.js'
 import MeetupCover from './MeetupCover.js'
 import MeetupInfo from './MeetupInfo.js'
 import './MeetupView.css'
-import meetups from './meetups.fixture.js'
 
 export default defineComponent({
   name: 'MeetupView',
@@ -22,7 +21,7 @@ export default defineComponent({
   props: {
     meetup: {
       type: Object,
-      default: () => meetups[0],
+      required: true,
     },
   },
 

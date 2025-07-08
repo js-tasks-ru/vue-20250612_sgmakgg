@@ -13,11 +13,13 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+  },
 
-    removeEmail: {
-      type: Function,
-      required: true,
-    },
+  setup(props, { emit }) {
+    const onRemoveEmail = index => {
+      emit('remove', index)
+    }
+    return { onRemoveEmail }
   },
 
   template: `
@@ -27,7 +29,7 @@ export default defineComponent({
             :key="email"
             :email="email"
             :marked="isMarked"
-            @remove-email="removeEmail(index)"
+            @remove="onRemoveEmail(index)"
         />
       </ul>
     `,

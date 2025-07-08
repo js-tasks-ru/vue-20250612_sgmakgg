@@ -17,7 +17,7 @@ const props = defineProps({
 <template>
   <div>
     <!-- Обложка митапа -->
-    <MeetupCover :image="props.meetup.image" :title="props.meetup.title" />
+    <MeetupCover :image="meetup.image" :title="meetup.title" />
 
     <UiContainer>
       <div class="meetup">
@@ -25,22 +25,18 @@ const props = defineProps({
           <h2>Описание</h2>
 
           <!-- Описание митапа -->
-          <MeetupDescription :description="props.meetup.description" />
+          <MeetupDescription :description="meetup.description" />
 
           <h2>Программа</h2>
 
           <!-- Программа митапа -->
-          <MeetupAgenda v-if="props.meetup.agenda && props.meetup.agenda.length" :agenda="props.meetup.agenda" />
+          <MeetupAgenda v-if="meetup.agenda && meetup.agenda.length" :agenda="meetup.agenda" />
           <!-- Или при пустой программе - сообщение "Программа пока пуста..." в UiAlert -->
-          <UiAlert v-if="!props.meetup.agenda || !props.meetup.agenda.length"> Программа пока пуста...</UiAlert>
+          <UiAlert v-if="!meetup.agenda || !meetup.agenda.length"> Программа пока пуста...</UiAlert>
         </div>
         <div class="meetup__aside">
           <!-- Краткая информация о митапе -->
-          <MeetupInfo
-            :date="props.meetup.date"
-            :organizer="props.meetup.organizer"
-            :place="props.meetup.place"
-          ></MeetupInfo>
+          <MeetupInfo :date="meetup.date" :organizer="meetup.organizer" :place="meetup.place"></MeetupInfo>
           <div class="meetup__aside-buttons"></div>
         </div>
       </div>

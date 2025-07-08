@@ -15,7 +15,7 @@ const bgStyle = computed(() => (props.image ? {'--bg-url': `url('${props.image}'
 
 <template>
   <div :style="bgStyle" class="meetup-cover">
-    <h1 class="meetup-cover__title">{{ props.title }}</h1>
+    <h1 class="meetup-cover__title">{{ title }}</h1>
   </div>
 </template>
 

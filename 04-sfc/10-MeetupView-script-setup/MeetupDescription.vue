@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="meetup-description">{{ props.description }}</div>
+  <div class="meetup-description">{{ description }}</div>
 </template>
 
 <style scoped>

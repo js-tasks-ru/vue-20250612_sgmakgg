@@ -44,7 +44,9 @@ export default defineComponent({
               timeToMilliseconds(location.current.dt) > timeToMilliseconds(location.current.sunset) ||
               timeToMilliseconds(location.current.dt) < timeToMilliseconds(location.current.sunrise)
           }">
-            <WeatherAlert v-if="location.alert"/>
+            <WeatherAlert v-if="location.alert"
+                          :name="location.alert.sender_name"
+                          :description="location.alert.description"/>
 
             <div>
               <LocationName :name="location.geographic_name"/>
