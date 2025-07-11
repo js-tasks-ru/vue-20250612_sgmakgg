@@ -1,13 +1,47 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup>
+import {computed} from 'vue';
+
+interface UiFormGroupProps {
+  for?: string;
+  label?: string;
+  description?: string;
+  hint?: string;
+  showHint?: boolean;
+  invalid?: boolean;
+}
+
+const props = defineProps<UiFormGroupProps>();
+
+const slots = defineSlots<{
+  default(): unknown
+  label?(): unknown
+  description?(): unknown
+}>();
+
+const showHintBlock = computed(() => props.hint !== undefined);
+const showHintContent = computed(() => props.invalid || props.showHint);
+const hintClass = computed(() =>
+    ['form-group__hint', props.invalid && 'form-group__hint--invalid'].filter(Boolean).join(' ')
+);
+</script>
 
 <template>
   <div class="form-group">
     <div class="form-group__label-wrapper">
-      <label for="FOR" class="form-group__label">LABEL</label>
-      <div class="form-group__description">DESCRIPTION</div>
+      <label v-if="slots.label || label" :for="props.for" class="form-group__label">
+        <slot name="label">{{ label }}</slot>
+      </label>
+      <div v-if="slots.description || description" class="form-group__description">
+        <slot name="description">{{ description }}</slot>
+      </div>
     </div>
-    <div class="form-group__control">CONTENT</div>
-    <div class="form-group__hint form-group__hint--invalid">HINT | ERROR</div>
+    <div class="form-group__control">
+      <slot />
+    </div>
+    <div v-if="showHintBlock" :class="hintClass" aria-live="polite">
+      <template v-if="showHintContent">{{ hint }}</template>
+      <template v-else>&nbsp;</template>
+    </div>
   </div>
 </template>
 

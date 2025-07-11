@@ -1,14 +1,14 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup></script>
 
 <template>
   <nav class="nav">
-    <a href="/index" class="nav__link">Главная</a>
-    <a href="/foo" class="nav__link">Страница Foo</a>
-    <a href="/bar" class="nav__link">Страница Bar</a>
-    <a href="/login" class="nav__link">Вход</a>
-    <a href="/login?from=/foo" class="nav__link">Вход /login?from=/foo</a>
-    <a href="/login?from=/bar" class="nav__link">Вход /login?from=/bar</a>
-    <a href="/register" class="nav__link">Регистрация</a>
+    <RouterLink class="nav__link" to="/index">Главная</RouterLink>
+    <RouterLink class="nav__link" to="/foo">Страница Foo</RouterLink>
+    <RouterLink class="nav__link" to="/bar">Страница Bar</RouterLink>
+    <RouterLink class="nav__link" to="/login">Вход</RouterLink>
+    <RouterLink class="nav__link" to="/login?from=/foo">Вход /login?from=/foo</RouterLink>
+    <RouterLink class="nav__link" to="/login?from=/bar">Вход /login?from=/bar</RouterLink>
+    <RouterLink class="nav__link" to="/register">Регистрация</RouterLink>
   </nav>
 </template>
 

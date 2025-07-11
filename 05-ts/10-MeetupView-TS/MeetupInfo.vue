@@ -1,46 +1,37 @@
-<script setup>
-import { computed } from 'vue'
-import { UiIcon } from '@shgk/vue-course-ui'
+<script lang="ts" setup>
+import {computed} from 'vue'
+import {UiIcon} from '@shgk/vue-course-ui'
 
-const props = defineProps({
-  organizer: {
-    type: String,
-    required: true,
-  },
+interface Props {
+  organizer: string
+  place: string
+  date: number
+}
 
-  place: {
-    type: String,
-    required: true,
-  },
-
-  date: {
-    type: Number,
-    required: true,
-  },
-})
+const props = defineProps<Props>()
 
 const isoDate = computed(() => new Date(props.date).toISOString().slice(0, 10))
 const localDate = computed(() =>
-  new Date(props.date).toLocaleString(navigator.language, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }),
+    new Date(props.date).toLocaleString(navigator.language, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
 )
 </script>
 
 <template>
   <ul class="meetup-info">
     <li>
-      <UiIcon icon="user" class="meetup-info__icon" />
+      <UiIcon class="meetup-info__icon" icon="user" />
       {{ organizer }}
     </li>
     <li>
-      <UiIcon icon="map" class="meetup-info__icon" />
+      <UiIcon class="meetup-info__icon" icon="map" />
       {{ place }}
     </li>
     <li>
-      <UiIcon icon="cal-lg" class="meetup-info__icon" />
+      <UiIcon class="meetup-info__icon" icon="cal-lg" />
       <time :datetime="isoDate">{{ localDate }}</time>
     </li>
   </ul>
